@@ -4,27 +4,61 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+    <h1 class="title">
+      Radio Phonk
+    </h1>
+    <audio controls>
+      <source 
+        src="/music/SE_BATER_DE_FRENTE-kauanzwp.mp3"
+        type="audio/mpeg"
+      >
+      Your browser does not support the audio element.
+    </audio>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <!-- Footer -->
+  <footer>
+    <a
+      href="https://github.com/romhenri/radio-phonk"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Projeto de Rádio Phonk Open-source (2024)
+    </a>
+  </footer>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.title {
+  font-size: 3em;
+  color: #fff;
+  text-align: center;
+
+  text-shadow: 
+  0 0 0.5em #646cff,
+  0 0 2em #646cff,
+  0 0 0.5em #646cff;
+
+  transition: text-shadow 300ms;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.title:hover {
+  text-shadow: 
+  0 0 0.5em #42b883,
+  0 0 2em #42b883,
+  0 0 0.5em #42b883;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.title:active {
+  text-shadow:
+  0 0 0.5em #ff0000,
+  0 0 2em #ff0000,
+  0 0 0.5em #ff0000;
+}
+footer {
+  text-align: center;
+  padding: 1em;
+  color: #fff;
+  font-size: 0.8em;
+}
+footer a {
+  color: #dddddd;
 }
 </style>
