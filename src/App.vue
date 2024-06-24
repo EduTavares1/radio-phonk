@@ -1,5 +1,6 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import Iframe from './components/Iframe.vue'
 </script>
 
 <template>
@@ -7,6 +8,7 @@ import HelloWorld from './components/HelloWorld.vue'
     <h1 class="title">
       Radio Phonk
     </h1>
+
     <audio controls>
       <source 
         src="/music/SE_BATER_DE_FRENTE-kauanzwp.mp3"
@@ -15,6 +17,11 @@ import HelloWorld from './components/HelloWorld.vue'
       Your browser does not support the audio element.
     </audio>
   </div>
+  
+  <Iframe
+    url="https://www.youtube.com/embed/Z7BByo2V-HA"
+  />
+    
   <!-- Footer -->
   <footer>
     <a
