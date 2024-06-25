@@ -1,5 +1,7 @@
 <script setup> 
 import { ref } from 'vue'
+import CardMusic from './components/CardMusic.vue';
+
 const iframeUrl = ref('https://www.youtube.com/embed/Z7BByo2V-HA')
 const yt = ref(null)
 let player = null
@@ -33,6 +35,8 @@ const pauseVideo = () => {
       </h1>
     </div>
     
+    <CardMusic />
+
     <div class="player">
       <div class="player">
         <div class="player-page">
@@ -133,5 +137,15 @@ footer {
 }
 footer a {
   color: #dddddd;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 </style>
