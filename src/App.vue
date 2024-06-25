@@ -39,6 +39,7 @@ const playVideo = () => {
     <div>
       <h1 class="title">
         Radio Phonk
+        <v-icon name="ri-play-fill" scale="2.5" fill="#ffff" aria-hidden="false"/>
       </h1>
     </div>
     
@@ -52,10 +53,43 @@ const playVideo = () => {
             :key="video" ref="yt"
             :video-id="video"
             height="300" width="600"
-            :player-vars="{ autoplay: 0, listType: 'user_uploads' }"
+            :player-vars="{
+              controls: 0,
+              autoplay: 0,
+              rel: 0,
+              showinfo: 0,
+              listType: 'user_uploads' 
+            }"
             @state-change="onStateChange"
           />
         </div>
+        
+        <div class="controls">
+          <button
+          >
+            <v-icon name="io-play-skip-back-sharp" />
+          </button>
+          <button
+          >
+            <v-icon name="io-play-sharp" />
+          </button>
+          <button
+          >
+            <v-icon name="io-pause-sharp" />
+          </button>
+
+          <button
+          >
+            <v-icon name="io-play-skip-forward-sharp" />
+          </button>
+
+          <button
+          >
+            <v-icon name="md-loop" />
+          </button>
+
+        </div>
+
         <button             
           @click="pauseVideo"
         >
