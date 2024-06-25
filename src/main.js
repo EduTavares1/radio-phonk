@@ -1,5 +1,7 @@
-import { createApp } from 'vue'
-import './style.css'
+import { createApp } from "vue"
+import VueYtframe from "vue3-ytframe"
 import App from './App.vue'
+import './style.css'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+app.use(VueYtframe).mount("#app")

@@ -1,9 +1,28 @@
-<script setup>
+<script setup> 
 import { ref } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
-import Iframe from './components/Iframe.vue'
-
 const iframeUrl = ref('https://www.youtube.com/embed/Z7BByo2V-HA')
+const yt = ref(null)
+let player = null
+const videosSet1 = [
+  "BPQFoF2exKA",
+]
+
+const onStateChange = (event) => {
+  if (event.getPlayerState() === 1) {
+    yt.value.forEach((video) => {
+      if (video.getVideoUrl() !== event.getVideoUrl()) {
+        video.pauseVideo()
+        player = video
+      }
+    })
+  }
+}
+
+const pauseVideo = () => {
+  yt.value.forEach((video) => {
+    video.pauseVideo()
+  })
+}
 </script>
 
 <template>
@@ -12,24 +31,25 @@ const iframeUrl = ref('https://www.youtube.com/embed/Z7BByo2V-HA')
       <h1 class="title">
         Radio Phonk
       </h1>
-
-      <!-- <audio controls>
-        <source 
-          src="/music/SE_BATER_DE_FRENTE-kauanzwp.mp3"
-          type="audio/mpeg"
-        >
-        Your browser does not support the audio element.
-      </audio> -->
     </div>
     
     <div class="player">
-      <Iframe
-        :url="iframeUrl"
-      />
-      <div>
-        <button @click="iframeUrl = 'https://www.youtube.com/embed/Z7BByo2V-HA'">WARNING</button>
-        <button @click="iframeUrl = 'https://www.youtube.com/embed/lJvRohYSrZM'">METAMORPHOSIS</button>
-        <button @click="iframeUrl = 'https://www.youtube.com/embed/NeNf5Ibqjuo'">DR. LIVESEYS</button>
+      <div class="player">
+        <div class="player-page">
+          <VueYtframe
+            v-for="video in videosSet1"
+            :key="video" ref="yt"
+            :video-id="video"
+            height="300" width="600"
+            :player-vars="{ autoplay: 0, listType: 'user_uploads' }"
+            @state-change="onStateChange"
+          />
+        </div>
+        <button
+          @click="pauseVideo"
+        >
+          CI UFPB
+        </button>
       </div>
     </div>
       
@@ -95,6 +115,11 @@ const iframeUrl = ref('https://www.youtube.com/embed/Z7BByo2V-HA')
   justify-content: center;
   gap: 1em;
   flex-direction: column;
+}
+.player {
+  height: 400px;
+  min-width: 600px;
+  max-width: 600px;
 }
 button {
   border: 2px solid #646cff;
