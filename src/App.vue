@@ -21,9 +21,16 @@ const onStateChange = (event) => {
 }
 
 const pauseVideo = () => {
-  yt.value.forEach((video) => {
+    yt.value.forEach((video) => {
     video.pauseVideo()
   })
+
+}
+const playVideo = () => {
+    yt.value.forEach((video) => {
+    video.playVideo()
+  })
+
 }
 </script>
 
@@ -49,11 +56,17 @@ const pauseVideo = () => {
             @state-change="onStateChange"
           />
         </div>
-        <button
+        <button             
           @click="pauseVideo"
         >
-          CI UFPB
+          Pause          
         </button>
+        <button             
+          @click="playVideo"
+        >
+          Play
+        </button>
+        
       </div>
     </div>
       
@@ -126,7 +139,7 @@ const pauseVideo = () => {
   max-width: 600px;
 }
 button {
-  border: 2px solid #646cff;
+  border: 2px solid #a100c5;
   border-radius: 0.5em;
 }
 footer {
