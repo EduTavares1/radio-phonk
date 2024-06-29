@@ -1,39 +1,3 @@
-<script setup> 
-import { ref } from 'vue'
-import CardMusic from './components/CardMusic.vue';
-
-const iframeUrl = ref('https://www.youtube.com/embed/Z7BByo2V-HA')
-const yt = ref(null)
-let player = null
-const videosSet1 = [
-  "BPQFoF2exKA",
-]
-
-const onStateChange = (event) => {
-  if (event.getPlayerState() === 1) {
-    yt.value.forEach((video) => {
-      if (video.getVideoUrl() !== event.getVideoUrl()) {
-        video.pauseVideo()
-        player = video
-      }
-    })
-  }
-}
-
-const pauseVideo = () => {
-    yt.value.forEach((video) => {
-    video.pauseVideo()
-  })
-
-}
-const playVideo = () => {
-    yt.value.forEach((video) => {
-    video.playVideo()
-  })
-
-}
-</script>
-
 <template>
   <section class="home">
     <div>
@@ -46,7 +10,7 @@ const playVideo = () => {
     <CardMusic />
 
     <div class="player">
-      <div class="player">
+      <div class="player"> 
         <div class="player-page">
           <VueYtframe
             v-for="video in videosSet1"
@@ -69,14 +33,12 @@ const playVideo = () => {
           >
             <v-icon name="io-play-skip-back-sharp" />
           </button>
-          <button
-          >
-            <v-icon name="io-play-sharp" />
+
+
+          <button @click="pausePlay">
+            <v-icon :name="isPlaying ? 'io-pause-sharp' : 'io-play-sharp'" />
           </button>
-          <button
-          >
-            <v-icon name="io-pause-sharp" />
-          </button>
+
 
           <button
           >
@@ -89,18 +51,7 @@ const playVideo = () => {
           </button>
 
         </div>
-
-        <button             
-          @click="pauseVideo"
-        >
-          Pause          
-        </button>
-        <button             
-          @click="playVideo"
-        >
-          Play
-        </button>
-        
+      
       </div>
     </div>
       
@@ -116,6 +67,43 @@ const playVideo = () => {
     </footer>
   </section>
 </template>
+
+<script setup>
+import { ref } from 'vue';
+import CardMusic from './components/CardMusic.vue';
+
+const iframeUrl = ref('https://www.youtube.com/embed/Z7BByo2V-HA');
+const yt = ref(null);
+const isPlaying = ref(false);
+let player = null;
+
+const videosSet1 = [
+  "BPQFoF2exKA",
+];
+
+const onStateChange = (event) => {
+  if (event.getPlayerState() === 1) {
+    yt.value.forEach((video) => {
+      if (video.getVideoUrl() !== event.getVideoUrl()) {
+        video.pauseVideo();
+        player = video;
+      }
+    });
+  }
+};
+
+const pausePlay = () => {
+  yt.value.forEach((video) => {
+    if (video.getPlayerState() === -1 || video.getPlayerState() === 0 || video.getPlayerState() === 2 || video.getPlayerState() === 5) {
+      video.playVideo();
+      isPlaying.value = true;
+    } else if (video.getPlayerState() === 1 || video.getPlayerState() === 3) {
+      video.pauseVideo();
+      isPlaying.value = false;
+    }
+  });
+};
+</script>
 
 <style scoped>
 @keyframes pulseShadow {
