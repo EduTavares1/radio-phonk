@@ -1,16 +1,12 @@
 <script>
-import albumArt from '../assets/pictures/album-cover.jpg'
-import previousArt from '../assets/pictures/previous.png'
-import pauseArt from '../assets/pictures/pause.png'
-import nextArt from '../assets/pictures/next.png'
-
 export default {
   data: function () {
     return {
-      albumArt: albumArt,
-      previousArt: previousArt,
-      pauseArt: pauseArt,
-      nextArt: nextArt
+      albumArt: 'https://cdns-images.dzcdn.net/images/cover/7d72b262a8575fc3eba402c044005273/1900x1900-000000-80-0-0.jpg', 
+      songTitle: 'Nome da música',
+      duration: 'Duração total',
+      category: 'Categoria',
+      bandName: 'Nome da banda',
     }
   }
 }
@@ -25,35 +21,19 @@ export default {
       />
     </div>
     <div class="info-section">
-      <div class="controls">
-        <button class="control-btn">
-          <img :src="previousArt"/>
-        </button>
-        <button class="control-btn">
-          <img :src="pauseArt"/>
-        </button>
-        <button class="control-btn">
-          <img :src="nextArt"/>
-        </button>
-      </div>
-      <div class="volume-info">
-        <span class="volume-percentage">72%</span>
-        <div class="volume-icon">
-          <i class="fas fa-volume-up"></i>
-        </div>
-        <div class="volume-bar">
-          <div class="volume-level"></div>
-        </div>
+      <div class="song-details">
+        <div><strong>Nome da banda:</strong> {{ bandName }}</div>
+        <div><strong>Categoria:</strong> {{ category }}</div>
+        <div><strong>Duração total:</strong> {{ duration }}</div>
       </div>
       <div class="song-info">
-        Listening now : Montagem Coral
+        <strong>Listening now:</strong> {{ songTitle }}
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-
 .music-card {
   display: flex;
   background-color: #1f1f1f;
@@ -82,56 +62,8 @@ export default {
   margin-left: 20px;
 }
 
-.controls {
-  display: flex;
-  justify-content: space-between;
+.song-details {
   margin-bottom: 10px;
-  width: 100%;
-}
-
-.control-btn {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  margin: 0 5px;
-}
-
-.control-btn img {
-  width: 30px;
-  height: 30px;
-}
-
-.volume-info {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.volume-percentage {
-  font-size: 1.2em;
-  margin-right: 10px;
-}
-
-.volume-icon {
-  font-size: 1.5em;
-  margin-right: 10px;
-}
-
-.volume-bar {
-  background-color: #333;
-  border-radius: 5px;
-  overflow: hidden;
-  width: 150px;
-  height: 10px;
-  display: flex;
-  align-items: center;
-}
-
-.volume-level {
-  background-color: #1e90ff;
-  width: 72%;
-  height: 100%;
 }
 
 .song-info {
