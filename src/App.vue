@@ -183,4 +183,9 @@ body {
     height: 100vh;
     margin: 0;
 }
+.controls{
+  display:flex;
+  gap:10px;
+  justify-content: center;
+}
 </style>
